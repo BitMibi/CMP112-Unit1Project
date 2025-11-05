@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class FlagColiider : MonoBehaviour
 {
+
+    //USED FOR FINISH "ANIMATION"//
+    public GameObject currentCamera;
+    public GameObject player;
+    public Vector3 endCameraPosition;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,9 +26,18 @@ public class FlagColiider : MonoBehaviour
     {
         //Add a debug message here for score/time/a secret third thing 
 
+        //currentCamera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        //currentCamera.transform.position = endCameraPosition + player.transform.position;
         string output = "You reached the goal! Final Score: "; //+ score     maybe add later 
 
-        Debug.Log(output); 
+        Debug.Log(output);
+
+
+
+
+
+        
+        
 
 
         SceneManager.LoadScene("EndOfGame"); //Should load the last scene when the flag is touched.

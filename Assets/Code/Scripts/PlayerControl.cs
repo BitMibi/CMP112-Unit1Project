@@ -22,6 +22,12 @@ public class PlayerControl : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
 
+    //Audio
+    private AudioSource audioSource;
+    public AudioClip pickupSound;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -63,7 +69,12 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
+
+
             other.gameObject.SetActive(false);
+            //Play Audio
+            audioSource.PlayOneShot(pickupSound, 1.0f); 
+
             score += 1;
 
             SetScoreText();

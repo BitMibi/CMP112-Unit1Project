@@ -23,8 +23,11 @@ public class PlayerControl : MonoBehaviour
 
 
     //Audio
-    private AudioSource audioSource;
+    private AudioSource source;
     public AudioClip pickupSound;
+
+    public float lowPitchRange = 0.0f;
+    public float highPitchRange = 3.0f;
 
 
 
@@ -36,6 +39,10 @@ public class PlayerControl : MonoBehaviour
         score = 0;
 
         SetScoreText();
+
+
+        //Activate Audio Source
+        source = GetComponent<AudioSource>();
     }
 
 
@@ -64,20 +71,32 @@ public class PlayerControl : MonoBehaviour
         rb.AddForce(movement * speed);
     }
 
+    //IGNORE THIS   
+    private void playAudio()
+    {
+        source.PlayOneShot(pickupSound, 1.0f);
+        source.pitch = Random.Range(lowPitchRange, highPitchRange);
+    }
+
     // Removes PickUps when colliding with them
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
-
+            
 
             other.gameObject.SetActive(false);
-            //Play Audio
-            audioSource.PlayOneShot(pickupSound, 1.0f); 
+            playAudio();
 
             score += 1;
 
             SetScoreText();
+
+            
         }
+        
     }
+    
 }
+
+

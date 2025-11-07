@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
 
     //Audio
     private AudioSource source;
-    public AudioClip pickupSound;
+    public AudioClip[] pickupSound;
 
     public float lowPitchRange = 0.0f;
     public float highPitchRange = 3.0f;
@@ -74,8 +74,17 @@ public class PlayerControl : MonoBehaviour
     //IGNORE THIS   
     private void playAudio()
     {
-        source.PlayOneShot(pickupSound, 1.0f);
+        //create a random array for audio files
+        AudioClip clip = pickupSound[(int)Random.Range(0,pickupSound.Length)];
+
+        //play array 
+        source.clip = clip;
+        source.PlayOneShot(clip, 1.0f);
+        //Randomise the pitch change
         source.pitch = Random.Range(lowPitchRange, highPitchRange);
+
+        //to see which sound files are triggered
+        Debug.Log(clip.name);
     }
 
     // Removes PickUps when colliding with them

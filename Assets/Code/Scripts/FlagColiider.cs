@@ -36,10 +36,10 @@ public class FlagColiider : MonoBehaviour
 
 
 
-        
-        
 
 
+
+        
         SceneManager.LoadScene("EndOfGame"); //Should load the last scene when the flag is touched.
 
 
